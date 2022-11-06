@@ -20,7 +20,7 @@ data "template_file" "gateway_policy" {
   template = file("policies/api-gateway-permission.json")
 
   vars = {
-    sqs_arn   = aws_sqs_queue.queue.arn
+    sqs_arn   = aws_sqs_queue.raas-queue.arn
   }
 }
 
