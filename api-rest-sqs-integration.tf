@@ -1,11 +1,11 @@
 resource "aws_api_gateway_integration" "api" {
-  rest_api_id             = aws_api_gateway_rest_api.apiGateway.id
+  rest_api_id             = aws_api_gateway_rest_api.raas-rest-api-tf.id
   resource_id             = aws_api_gateway_resource.form_score.id
   http_method             = aws_api_gateway_method.method_form_score.http_method
   type                    = "AWS"
   integration_http_method = "POST"
   credentials             = aws_iam_role.apiSQS.arn
-  uri                     = "arn:aws:apigateway:${var.region}:sqs:path/${aws_sqs_queue.queue.name}"
+  uri                     = "arn:aws:apigateway:${var.region}:sqs:path/${aws_sqs_queue.raas-queue.name}"
 
   request_parameters = {
     "integration.request.header.Content-Type" = "'application/x-www-form-urlencoded'"
