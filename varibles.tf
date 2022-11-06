@@ -11,6 +11,7 @@ variable "teamcode" {
 variable "name" {
     description = "Application Name"
     type        = string
+    default     = "dev"
 }
 
 locals {
