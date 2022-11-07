@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "raas-rest-api-tf" {
-  name        = "api-gateway-SQS"
-  description = "POST records to SQS queue"
+  name        = "raas-rest-api-tf"
+  description = "Rest POST records to SQS queue"
 }
 
 resource "aws_api_gateway_resource" "form_score" {
