@@ -6,13 +6,6 @@ resource "aws_api_gateway_deployment" "api" {
    aws_api_gateway_integration.api,
  ]
 
- # Redeploy when there are new updates
- triggers = {
-   redeployment = sha1(join(",", tolist(
-     jsonencode(aws_api_gateway_integration.api),
-   )))
- }
-
  lifecycle {
    create_before_destroy = true
  }
