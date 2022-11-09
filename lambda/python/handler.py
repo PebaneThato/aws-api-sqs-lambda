@@ -1,2 +1,3 @@
 def lambda_handler(event, context):
-    print(event)
+    data = event['Records'][0]['body']
+    print(data)
