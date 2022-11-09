@@ -3,10 +3,10 @@ resource "aws_api_gateway_rest_api" "raas-rest-api-tf" {
   description = "Rest POST records to SQS queue"
 }
 
-resource "aws_api_gateway_resource" "form_score" {
+resource "aws_api_gateway_resource" "send-client-data" {
     rest_api_id = aws_api_gateway_rest_api.raas-rest-api-tf.id
     parent_id   = aws_api_gateway_rest_api.raas-rest-api-tf.root_resource_id
-    path_part   = "form-score"
+    path_part   = "send-client-data"
 }
 
 resource "aws_api_gateway_request_validator" "validator_query" {
@@ -16,9 +16,9 @@ resource "aws_api_gateway_request_validator" "validator_query" {
   validate_request_parameters = true
 }
 
-resource "aws_api_gateway_method" "method_form_score" {
+resource "aws_api_gateway_method" "method_send-client-data" {
     rest_api_id   = aws_api_gateway_rest_api.raas-rest-api-tf.id
-    resource_id   = aws_api_gateway_resource.form_score.id
+    resource_id   = aws_api_gateway_resource.send-client-data.id
     http_method   = "POST"
     authorization = "NONE"
 

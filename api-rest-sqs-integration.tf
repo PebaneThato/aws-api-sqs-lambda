@@ -1,7 +1,7 @@
 resource "aws_api_gateway_integration" "api" {
   rest_api_id             = aws_api_gateway_rest_api.raas-rest-api-tf.id
-  resource_id             = aws_api_gateway_resource.form_score.id
-  http_method             = aws_api_gateway_method.method_form_score.http_method
+  resource_id             = aws_api_gateway_resource.send-client-data.id
+  http_method             = aws_api_gateway_method.method_send-client-data.http_method
   type                    = "AWS"
   integration_http_method = "POST"
   credentials             = aws_iam_role.apiSQS.arn
