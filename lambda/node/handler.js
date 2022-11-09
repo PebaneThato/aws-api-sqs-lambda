@@ -1,3 +1,4 @@
 exports.lambda_handler = async function (event, context) {
-    console.log("EVENT\n" + JSON.stringify(event))
+    const data = event['Records'][0]['body'];
+    console.log(data);
 };
