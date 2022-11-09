@@ -4,7 +4,7 @@ data "archive_file" "lambda_with_dependencies" {
   type        = "zip"
 }
 
-resource "aws_lambda_function" "lambda_sqs" {
+resource "aws_lambda_function" "lambda_python_sqs" {
   function_name    = "${local.app_name}-${var.lambda_name}"
   handler          = "handler.lambda_handler"
   role             = aws_iam_role.lambda_exec_role.arn
