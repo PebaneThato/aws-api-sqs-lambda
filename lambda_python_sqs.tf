@@ -17,21 +17,3 @@ resource "aws_lambda_function" "lambda_python_sqs" {
   memory_size      = 128
 
 }
-
-resource "aws_iam_role" "lambda_role" {
-    name = "LambdaRole"
-    assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-        "Action": "sts:AssumeRole",
-        "Effect": "Allow",
-        "Principal": {
-            "Service": "lambda.amazonaws.com"
-        }
-    }
-  ]
-}
-EOF
-}
