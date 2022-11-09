@@ -5,7 +5,7 @@ data "archive_file" "node_lambda_archive" {
 }
 
 resource "aws_lambda_function" "lambda_node_sqs" {
-  function_name    = "${local.app_name}-${var.lambda_name}"
+  function_name    = "${local.app_name}-${var.lambda_name}-node"
   handler          = "handler.lambda_handler"
   role             = aws_iam_role.lambda_role.arn
   runtime          = "nodejs16.x"

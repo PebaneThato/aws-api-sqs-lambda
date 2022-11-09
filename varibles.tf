@@ -25,5 +25,5 @@ variable "region" {
 
 variable "lambda_name" {
     description = "Name for lambda function"
-    default = "raas_python"
+    default = "raas_lambda"
 }
