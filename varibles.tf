@@ -11,7 +11,7 @@ variable "teamcode" {
 variable "name" {
     description = "Application Name"
     type        = string
-    default     = "dev"
+    default     = "rca"
 }
 
 locals {
@@ -25,5 +25,5 @@ variable "region" {
 
 variable "lambda_name" {
     description = "Name for lambda function"
-    default = "lambda"
+    default = "raas_python"
 }
