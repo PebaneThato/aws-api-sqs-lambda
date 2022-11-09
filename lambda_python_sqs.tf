@@ -7,7 +7,7 @@ data "archive_file" "lambda_with_dependencies" {
 resource "aws_lambda_function" "lambda_python_sqs" {
   function_name    = "${local.app_name}-${var.lambda_name}"
   handler          = "handler.lambda_handler"
-  role             = aws_iam_role.lambda_exec_role.arn
+  role             = aws_iam_role.lambda_role.arn
   runtime          = "python3.7"
 
   filename         = data.archive_file.lambda_with_dependencies.output_path
@@ -16,7 +16,22 @@ resource "aws_lambda_function" "lambda_python_sqs" {
   timeout          = 30
   memory_size      = 128
 
-  depends_on = [
-    aws_iam_role_policy_attachment.lambda_role_policy
+}
+
+resource "aws_iam_role" "lambda_role" {
+    name = "LambdaRole"
+    assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+        "Action": "sts:AssumeRole",
+        "Effect": "Allow",
+        "Principal": {
+            "Service": "lambda.amazonaws.com"
+        }
+    }
   ]
+}
+EOF
 }
