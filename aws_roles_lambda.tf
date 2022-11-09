@@ -31,3 +31,25 @@ resource "aws_iam_role" "lambda_role" {
 }
 EOF
 }
+
+resource "aws_iam_role_policy" "lambda_role_sqs_policy" {
+    name = "AllowSQSPermissions"
+    role = "${aws_iam_role.lambda_role.id}"
+    policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sqs:ChangeMessageVisibility",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:ReceiveMessage"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
