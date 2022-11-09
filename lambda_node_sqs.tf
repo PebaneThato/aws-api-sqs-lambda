@@ -18,7 +18,7 @@ resource "aws_lambda_function" "lambda_node_sqs" {
     
 }
 
-resource "aws_lambda_permission" "allows_sqs_to_trigger_lambda" {
+resource "aws_lambda_permission" "allows_sqs_to_trigger_node_lambda" {
   statement_id  = "AllowExecutionFromSQS"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.lambda_node_sqs.function_name
@@ -27,7 +27,7 @@ resource "aws_lambda_permission" "allows_sqs_to_trigger_lambda" {
 }
 
 # Trigger lambda on message to SQS
-resource "aws_lambda_event_source_mapping" "event_source_mapping" {
+resource "aws_lambda_event_source_mapping" "node_event_source_mapping" {
   batch_size       = 1
   event_source_arn =  aws_sqs_queue.raas-queue.arn
   enabled          = true
