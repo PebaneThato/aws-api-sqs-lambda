@@ -1,11 +1,11 @@
 data "archive_file" "python_lambda_archive" {
-  source_dir  = "lambda/python/"
-  output_path = "lambda/python/${local.app_name}-${var.lambda_name}.zip"
+  source_dir  = "lambda/python/handler/"
+  output_path = "lambda/python/handler/${local.app_name}-${var.lambda_name}.zip"
   type        = "zip"
 }
 
 resource "aws_lambda_function" "lambda_python_sqs" {
-  function_name    = "${local.app_name}-${var.lambda_name}-python"
+  function_name    = "${local.app_name}-${var.lambda_name}-python-sqs"
   handler          = "handler.lambda_handler"
   role             = aws_iam_role.lambda_role.arn
   runtime          = "python3.7"
