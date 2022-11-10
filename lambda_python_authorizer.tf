@@ -6,7 +6,7 @@ data "archive_file" "lambda_python_authorizer_archive" {
 
 resource "aws_lambda_function" "lambda_python_authorizer" {
   function_name    = "${local.app_name}-${var.lambda_name}-python-authorizer"
-  handler          = "handler.lambda_handler"
+  handler          = "authorizer.lambda_handler"
   role             = aws_iam_role.lambda_role.arn
   runtime          = "python3.7"
 
