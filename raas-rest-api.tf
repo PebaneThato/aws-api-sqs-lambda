@@ -20,7 +20,8 @@ resource "aws_api_gateway_method" "method_send-client-data" {
     rest_api_id   = aws_api_gateway_rest_api.raas-rest-api-tf.id
     resource_id   = aws_api_gateway_resource.send-client-data.id
     http_method   = "POST"
-    authorization = "NONE"
+    authorization = "CUSTOM"
+    authorizer_id = aws_api_gateway_authorizer.raas-rest-api-authorizer.id
 
     request_parameters = {
       "method.request.path.proxy"        = false
